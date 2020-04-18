@@ -1,18 +1,19 @@
 
 public class BST<T extends Comparable> {
+    // this is the root... the begining, can set to null if i want
     private Node<T> root;
-
+    // the nodes, what they have and left and right
     class Node<T extends Comparable> {
         T data;
         Node<T> left;
         Node<T> right;
 
     }
-
+    // if item is in return true or false
     public boolean find(Comparable item) {
-        return find(root, item);
+        return find(item);
     }
-
+    // the function
     protected boolean find(Node<T> node, Comparable item) {
 
         if (node == null) {
@@ -25,7 +26,7 @@ public class BST<T extends Comparable> {
         else
             return find(item.node.right);
     }
-
+    // find the place to insert
     public void insert(Comparable item) {
         root = insert(item);
     }
@@ -43,12 +44,12 @@ public class BST<T extends Comparable> {
 
         
     }
-
+    //prints
     public void print() {
         print(root);
 
     }
-
+    // doesnt stop till its null
     protected void print(Node<T> node) {
         if (node != null) {
             print(node.left);
@@ -62,9 +63,10 @@ public class BST<T extends Comparable> {
     }
 
     protected Node delete(Node<T> node, Comparable key) {
+        //if thers nothing its do nothing
         if (node == null)
             return null;
-
+        // find where to delete accorind to < >
         if (node.data < key) {
             node.right = delete(node.right, key);
             return node;
@@ -87,7 +89,7 @@ public class BST<T extends Comparable> {
             }
         }
     }// end delete
-
+    // find the smallest node.
     public Comparable<T> removeSmallest(Node<T> node) {
         if (node.left.left == null) {
             Comparable<T> smallest = node.left.data;
